@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>client</title>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.0/dist/sockjs.min.js" ></script>
+    <!--<script defer src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/dist/stomp.min.js" ></script> -->
+    <script src="/js/stomp/lib/stomp.min.js"></script>
+    
+    <script>
+        let stompClient = null;
+        function connect(){
+            const socket = new SockJS("/ws");
+            console.log("connecting....")
+            stompClient = Stomp.over(socket);
+            stompClient.connect({}, (frame)=>{
+                console.log("Connected:", frame);
+                stompClient.subscribe("/topic/events", (event)=>{
+                    showMessage(event.body);
+                })
+            })
+        }
+        function showMessage(message){
+            const messages = document.querySelector("#messages");
+            const newMessage = document.createElement("div");
+            newMessage.textContent = message;
+            messages.appendChild(newMessage);
+        }
+        function funcSend() {
+            const message = document.querySelector("#sendData").value;
+            if (stompClient) {
+                stompClient.send("/app/sendMessage", {}, JSON.stringify({ content: message }));
+            } else {
+                console.log("StompClient is not connected.");
+            }
+        }
+        
+    </script>
+
+</head>
+<body>
+    <h1>Real time message</h1>
+    <button type="button" onclick="connect()">연결</button>
+    <br/>
+    <input type="text" id="sendData">
+    <button type="button" onclick="funcSend()">전송</button>
+    <div id="messages"></div>    
+</body>
+</html>

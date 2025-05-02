@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Time Notification Badge</title>
+    <link rel="stylesheet" href="/css/index.css">
+       <!--(a)SockJS 라이브러리-->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.0/dist/sockjs.min.js" ></script>
+    <!--(b)Stomp 라이브러리-->   
+    <script src="/js/stomp/stomp.min.js"></script>    
+    <script defer src="/js/index.js"></script>
+</head>
+<body>
+    <main id="main">
+        <h1>실시간 알림 뱃지</h1>
+        <div class="badge"> <!--로그인/로그아웃 배지 -->
+            <button type="button" class="btnLogin">로그인</button>
+            <div class="info">
+                <span id="id">홍길동</span>
+                <span class="count">99</span>
+                <button type="button" class="btnLogout">로그아웃</button>
+            </div>
+        </div>
+        <div id="notice"> <!--공지목록-->
+            <h2>Notices</h2>
+            <button type="button" class="btnInsert">공지추가</button>
+            <div class="title">
+                <span class="sno">번호</span>
+                <span class="id">작성자</span>
+                <span class="subject">제목</span>
+                <span class="doc">내용</span>
+                <span class="checking">상태</span>
+            </div>
+            <div class="items"> <!--공지목록-->
+            </div> 
+            
+        </div>
+    </main>
+    
+    <template class="item"> <!--공지 목록을 위한 템플릿-->
+        <div class="row">
+            <span class="sno">번호</span>
+            <span class="id">작성자</span>
+            <span class="subject">제목</span>
+            <span class="doc">내용</span>
+            <span class="checking">상태</span>
+        </div>
+    </template>
+
+    <dialog class="dialogLogin"> <!--로그인 다이얼로그-->
+        <form name="frm" class="frmLogin">
+            <span>아이디</span>
+            <input name="id" type="text" class="id" value="hong">
+            <br/>
+            <span>암호</span>
+            <input name="pwd" type="password" class="pwd" value="hong">
+            <br/>
+            <div class="btnZone">
+                <button type="button" class="btnOK">확인</button>
+                <button type="button" class="btnCancel">닫기</button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog class="dialogNotice"> <!--공지입력및 세부사항 표시 다이얼로그-->
+        <h4>공지사항</h4>
+        <form name="frmNotice" class="frmNotice">
+            <span>작성자</span>
+            <input type="text" name="id" class="id" readonly><br/>
+            <span>제목</span>
+            <input type="text" name="subject" class="subject" maxLength="100"><br/>
+            <span></span>
+            <textarea name="doc" class="doc" maxlength="500"></textarea>
+            <br/>
+            <span></span>
+            <button type="button" class="btnInsert">작성</button>
+            <button type="button" class="btnDelete">삭제</button>
+            <button type="button" class="btnCancel">닫기</button>
+            <input type="hidden" name="sno">
+        </form>
+    </dialog>
+</body>
+</html>

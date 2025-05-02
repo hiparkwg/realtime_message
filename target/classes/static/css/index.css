@@ -1,0 +1,131 @@
+*{
+    box-sizing: border-box; /* 8-a */
+}
+/*페이지 전체 레이아웃 */
+#main{
+    width:800px;
+    margin:50px auto; /* 8-b */
+}
+#main>h1{
+    color:#00f;
+    text-align: center;
+}
+
+/* 로그인, 로그아웃, 배지표시 영역 */
+#main>.badge{
+    background-color: #eee;
+    padding:10px;
+    text-align: right;
+}
+
+/*로그인되었을때 표시될 배지와 로그아웃버튼이 있는 위치 */
+#main>.badge .info{ 
+    display: none;
+}
+
+/* 배치가 변경되었을때 표시할 애니메이션 */
+@keyframes pulse { 
+    0% {
+        transform: scale(1);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(3); /* 3배커짐 */
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+/* 배치 표시영역 */
+#main .info>.count{
+    position:relative;
+    display: inline-block;
+    border-radius: 25px;
+    min-width:20px;
+    height: 20px;
+    background-color: #f00;
+    color:#ff0;
+    text-align: center;
+    line-height: 20px;
+    font-size: 10px;
+    cursor: pointer;    
+
+}
+/* login dialog */
+.dialogLogin{
+    margin-top:150px;
+}
+.dialogLogin span{
+    display: inline-block;
+    width:60px;
+}
+.dialogLogin .btnZone{
+    text-align: center;
+    margin-top:10px;
+}
+
+/* 공지 목록표시 */
+#notice{
+    display: none;
+    margin-top:3px;
+}
+#notice>.title{
+    background-color: #444;
+    color : #fff;
+    display: flex;
+}
+#notice .row{
+    display: flex;
+}
+#notice .row:last-child{
+    border-bottom: 2px solid #999;
+}
+#notice .row:hover{
+    cursor: pointer;
+    background-color: #ccc;
+}
+#notice .sno { width: 80px; }
+#notice .id { width: 120px; }
+#notice .subject { 
+    width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#notice .doc { 
+    width: 360px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#notice .checking{
+    flex-grow: 1;
+    text-align: center;
+}
+
+/* 공지입력 화면 */
+.dialogNotice{
+    width:500px;
+    height: 270px;
+    margin-top:250px;
+}
+.dialogNotice>h4{
+    text-align: center;
+    color:#00f;
+    margin-top:0;
+}
+.dialogNotice .subject{
+    width:400px;
+    margin-bottom:3px;
+}
+.dialogNotice .doc{
+    width:400px;
+    height: 100px;
+}
+.dialogNotice span{
+    display: inline-block;
+    width:55px;
+}
