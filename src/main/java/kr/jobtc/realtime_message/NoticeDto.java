@@ -16,7 +16,7 @@ public class NoticeDto {
     PreparedStatement ps;
     ResultSet rs;
     String dbUrl="jdbc:mysql://localhost:3306/easy";
-    String dbUser="jobtc";
+    String dbUser="root";
     String dbPwd = "1111";
 
 
