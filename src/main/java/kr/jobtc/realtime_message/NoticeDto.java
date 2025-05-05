@@ -80,7 +80,7 @@ public class NoticeDto {
         String sql = " select n.id, n.sno, n.subject, n.doc, " + 
                      " (select 'checked' from notice_check nc where n.sno=nc.notice_sno and nc.id=?) checking " + 
                      " from notice n" +
-                     " order by checking, n.sno desc";
+                     " order by n.sno desc";
         try{
             ps = connection.prepareStatement(sql);
             ps.setString(1, user);
