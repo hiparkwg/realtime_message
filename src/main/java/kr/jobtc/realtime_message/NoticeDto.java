@@ -16,9 +16,8 @@ public class NoticeDto {
     PreparedStatement ps;
     ResultSet rs;
     String dbUrl="jdbc:mysql://localhost:3306/easy";
-    String dbUser="root";
+    String dbUser="jobtc";
     String dbPwd = "1111";
-
 
     public void dbOpen(){
         try{
@@ -28,7 +27,6 @@ public class NoticeDto {
             ex.printStackTrace();
         }
     }
-
 
     public void dbClose(){
         try{
@@ -55,7 +53,6 @@ public class NoticeDto {
         return b;
     }
 
-
     // 로그인 유저에게 전송할 미확인 공지개수 체크
     public int countByUser(String user){
         int count = 0;
@@ -78,7 +75,8 @@ public class NoticeDto {
     public List<NoticeVo> notiList(String user){
         List<NoticeVo> list = new ArrayList<>();
         String sql = " select n.id, n.sno, n.subject, n.doc, " + 
-                     " (select 'checked' from notice_check nc where n.sno=nc.notice_sno and nc.id=?) checking " + 
+                     " (select 'checked' from notice_check nc " + 
+                     "       where n.sno=nc.notice_sno and nc.id=?) checking " + 
                      " from notice n" +
                      " order by n.sno desc";
         try{
@@ -101,7 +99,6 @@ public class NoticeDto {
         }catch(Exception ex){
             ex.printStackTrace();
         }
-
         return list;
     }
 
@@ -121,7 +118,6 @@ public class NoticeDto {
         }catch(Exception ex){
             ex.printStackTrace();
         }
-
         return b;
     }
 
@@ -148,7 +144,6 @@ public class NoticeDto {
         return b;
     }
 
-
     // 공지 삭제
     public boolean noticeDelete(NoticeVo vo){
         boolean b=false;
@@ -174,10 +169,7 @@ public class NoticeDto {
             ex.printStackTrace();
         }
         return b;
-
     }
-
-
 
     // 사용자별 미확인 공지 개수
     public Map<String, Integer> allUser(){
@@ -188,6 +180,7 @@ public class NoticeDto {
                      " from user";
         try{
             ps = connection.prepareStatement(sql);
+
             rs = ps.executeQuery();
             while(rs.next()){
                 allUser.put(rs.getString("id"), rs.getInt("cnt"));
@@ -195,7 +188,6 @@ public class NoticeDto {
         }catch(Exception ex){
             ex.printStackTrace();
         }
-
         return allUser;
     }
 
@@ -215,7 +207,6 @@ public class NoticeDto {
         }catch(Exception ex){
             ex.printStackTrace();
         }
-
         return notiVo;
     }
 }
