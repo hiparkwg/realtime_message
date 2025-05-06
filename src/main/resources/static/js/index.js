@@ -152,6 +152,8 @@
         dialogNotice.showModal();
         dialogNotice.querySelector(".btnCancel").addEventListener("click", ()=>{
             dialogNotice.close();
+            let newDialogNotice = dialogNotice.cloneNode(true);
+            dialogNotice.replaceWith(newDialogNotice);
         })
 
         // 입력버튼이 클릭된 경우
@@ -179,6 +181,8 @@
 
         // 공지항목을 클릭했을 때
         let row = clone.querySelector(".row");
+
+        //공지사항 세부내용 보기
         row.addEventListener("click", (ev)=>{
             if(data.checking !=''){ //공지상태가 미확인 인경우
                 let message={
@@ -188,10 +192,8 @@
                 }
                 sendMessage(message);
             }
-
-            //공지사항 세부내용 보기
+            
             let dialogNotice = document.querySelector(".dialogNotice"); 
-    
             //입력 버튼 감추기
             dialogNotice.querySelector(".btnInsert").style.display="none";
 
@@ -209,12 +211,12 @@
             frm.sno.value = data.sno;
             frm.subject.value = data.subject;
             frm.doc.value = data.doc;
-    
+
             // 삭제 버튼
-            dialogNotice.querySelector(".btnDelete").addEventListener("click", ()=>{
+            dialogNotice.querySelector(".btnDelete").addEventListener("click", ()=>{;
                 let yn = confirm("삭제 하시겠습니까?");
                 if(!yn) return;
-
+    
                 let frm = dialogNotice.querySelector(".frmNotice");
                 let message={
                     'command' : "noticeDelete",
@@ -223,15 +225,17 @@
                 }
                 sendMessage(message);
                 dialogNotice.close();
-                frm.reset();
-                
-            },{once : true})
+                frm.reset();                
+            },{once:true});
 
             //dialog 닫기
             dialogNotice.showModal();
             dialogNotice.querySelector(".btnCancel").addEventListener("click", ()=>{
                 dialogNotice.close();
-            })                
+                let newDialogNotice = dialogNotice.cloneNode(true);
+                dialogNotice.replaceWith(newDialogNotice);
+            })            
+
         })
         return clone;
     }
