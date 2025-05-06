@@ -1,1 +1,2 @@
-# realtime_message
+# WebSocket을 사용한 실시간 공지사항 체크
+SockJS와 Stomp 라이브러리를 사용하여 실시간으로 공지사항의 상태값을 체크하여 웹 화면에 출력하는 프로젝트입니다.
