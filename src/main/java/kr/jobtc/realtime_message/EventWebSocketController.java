@@ -21,12 +21,10 @@ public class EventWebSocketController {
         messagingTemplate.convertAndSend(sendURL, message);
     }
 
-
     @MessageMapping("/login")
     public void login(Map<String, Object> message){
         Map<String, Object> msg = new HashMap<>();
 
-        System.out.printf("login : %s\n", message);
         String id = (String) message.get("id");
         String pwd = (String) message.get("pwd");
         String command = (String) message.get("command");
@@ -67,7 +65,6 @@ public class EventWebSocketController {
         msg.put("status", true);
         dto.dbClose();        
         sendEventToClient(msg);
-
     }
 
     @MessageMapping("/noticeViewCheck")
@@ -89,9 +86,7 @@ public class EventWebSocketController {
         msg.put("id", message.get("id"));
         msg.put("status", status);        
         sendEventToClient(msg);
-
     }
-
 
     // 모든 유저에게 메시지 전송
     public void allAccountSend(Map<String, Object> message) {
