@@ -9,4 +9,4 @@ SockJS와 Stomp 라이브러리를 사용하여 실시간으로 공지사항의 
 - 공지확인이나 새로운 공지를 입력할 때 dialog를 사용하여 spa를 구현하였다.
 ## 프로젝트 설명
 - 유료 문서 : 크몽 URL
-- 관련 영상 : https://youtu.be/gKwb0sWUVMk
+- 관련 영상 : https://youtu.be/U4THUacIA3E
